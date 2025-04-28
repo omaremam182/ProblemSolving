@@ -1,0 +1,53 @@
+package leetCodeEasy;
+
+import java.util.HashMap;
+
+public class TwoSums {
+
+	public static void main(String[] args) {
+
+		//System.out.println(twoSum_n2(new int[] {5,9,8,10,19}, 14));
+		int[] sonuc = twoSum_n2(new int[] {5,9,8,10,19}, 24); // Zaman Karmaşıklığı : O(n2) 
+		print(sonuc);
+		
+		int[] sonuc2 = twoSum_n(new int[] {5,9,8,10,19}, 24); // Zaman Karmaşıklığı : O(n) 
+		print(sonuc2);
+	}
+    public static int[] twoSum_n2(int[] nums, int target) {
+        int[] retArr = new int [2];
+        
+        for (int i = 0;i<nums.length-1;i++){
+            for(int j=i+1;j<nums.length;j++){
+            	
+                if (nums[i]+nums[j]==target){
+                    retArr[0] = i;
+                    retArr[1] = j;
+                    return retArr;
+                }
+            }
+
+        }
+        return retArr; 
+    }
+    
+    public static int[] twoSum_n (int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
+            }
+            map.put(nums[i], i);
+        }
+ 
+        return new int[] {}; 
+    }
+    
+    public static void print(int[] arr) {
+    	System.out.print("[");
+    	for (int i = 0; i < arr.length; i++) {
+			System.out.print(" "+arr[i]+" ");
+		}
+    	System.out.println("]");
+    }
+} 
