@@ -1,0 +1,52 @@
+package leetCodeEasy;
+
+public class PalindromeNumber {
+
+	public static void main(String[] args) {
+
+
+		System.out.println(isPalindrome(515));
+		System.out.println(isPalindrome(55));
+		System.out.println(isPalindrome(110011));
+	}
+	
+	// Temel Çözüm : 
+	public static boolean isPalindrome(int x) {
+		boolean flag = true;
+        String sNumber = String.valueOf(x);
+        char[] digits = sNumber.toCharArray();
+        int half  = digits.length/2;
+        for(int i = 0 ; i< half ;i++) {
+        	if (digits[i] == digits[digits.length-i-1]) {
+        		flag = true ;
+        	}
+        	else 
+        		return false;
+        	
+        }
+    return flag;
+	}
+
+// Optimum Çözüm : 
+	   /*
+	     public boolean isPalindrome(int x) {
+	        // Özel durumlar:
+	        // x negatifse veya son basamağı 0 ise (ama x 0 değilse) palindrom olamaz.
+	        if (x < 0 || (x % 10 == 0 && x != 0)) {
+	            return false;
+	        }
+
+	        int reversedHalf = 0;
+	        // Sayının yarısını ters çevir:
+	        while (x > reversedHalf) {
+	            reversedHalf = reversedHalf * 10 + x % 10;
+	            x /= 10;
+	        }
+
+	        // Basamak sayısı çift ise x == reversedHalf,
+	        // tek ise x == reversedHalf / 10 olmalı.
+	        return x == reversedHalf || x == reversedHalf / 10;
+	    }
+
+	    */
+}
