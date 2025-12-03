@@ -12,41 +12,41 @@ public class AddTwoNumbers {
 		ListNode L1 = new ListNode(4,L2);
 		addTwoNumbers(la,L1);
 	}
-	
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-		
-		ListNode head = null; 
-		ListNode current = null; 
-		int carry = 0; 
-		
-		while (l1 != null || l2 != null || carry != 0) {
-			int sum = carry; 
-			
-			if (l1 != null) {
-				sum += l1.val; 
-				l1 = l1.next; 
-			}
-			if (l2 != null) {
-				sum += l2.val; 
-				l2 = l2.next; 
-			}
-			
-			carry = sum / 10; 
-			ListNode newNode = new ListNode(sum % 10);
-			
-			if (head == null) {
-				head = newNode;
-				current = head; 
-			} else {
-				current.next = newNode; 
-				current = current.next; 
-			}
-		}
-		
-		return head;
-	}
+        ListNode c1 = l1,c2 = l2;
+        ListNode start,temp = new ListNode();
+        start = temp;
+        boolean carry = false;
+        int sum = 0;
+        while(temp!= null){
+            if(carry){
+                sum = 1;
+                carry = false;
+            }else{
+                sum = 0;
+            }
+            if(c1!= null) {
+                sum+=c1.val;
+                c1 = c1.next;
+            }
+            if(c2!= null){
+                sum+=c2.val;
+                c2 = c2.next;
+            }
+            if(sum > 9){
+                   sum-=10;
+                   carry = true;
+                }
+            temp.val= sum;
+            if(c2!= null || c1!= null || carry){
+                temp.next = new ListNode();
+            }
+            temp = temp.next;
+        }
+        return start;
+    }
 	
-	/*
+	/*  GPT Cozumu : 
 	 public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 	        ListNode dummyHead = new ListNode(0);
 	        ListNode current = dummyHead;
